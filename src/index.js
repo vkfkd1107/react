@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const name = 'jisu'
+const element = <h1>Hello, {name}</h1>
+
 ReactDOM.render(
-  <h1>Hello World</h1>,
+  element,
   document.getElementById('root')
 );
 
