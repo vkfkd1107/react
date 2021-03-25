@@ -91,9 +91,8 @@ class test extends React.Component{
 
 <FormattedDate date={this.state.date} />
 
-// FormattedDate 컴포넌트는 date를 자신의 props로 받을 것이고 이것이 Clock의 state로부터 왔는지,
-// Clock의 props에서 왔는지, 수동으로 입력한 것인지 알지 못한다.
-
 function FormattedDate(props) {
     return <h2>It is {props.date.toLocaleTimeString()}</h2>;
 }
+// FormattedDate 컴포넌트는 date를 자신의 props로 받을 것이고 이것이 Clock의 state로부터 왔는지,
+// Clock의 props에서 왔는지, 수동으로 입력한 것인지 알지 못한다.

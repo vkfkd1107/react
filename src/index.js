@@ -99,9 +99,45 @@ function ActionLink() {
   )
 }
 
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF' }
+      </button>
+    )
+  }
+}
+
+class LogginButton extends React.Component {
+  handleClick = () => {
+    alert('this is : ',this);
+  }
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    )
+  }
+}
+
 ReactDOM.render(
   // 1. Clock이 ReactDOM.render()로 전달된다
-  <ActionLink />,
+  <LogginButton />,
   document.getElementById('root')
 );
 
