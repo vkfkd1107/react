@@ -77,9 +77,31 @@ class Clock extends React.Component {
   }
 }
 
+function Test(){
+  return (
+    <div>
+      <Clock />
+      <Clock />
+      <Clock />
+    </div>
+  );
+}
+
+function ActionLink() {
+  function handleClick(e) {
+    e.preventDefault();
+    alert('The link was clicked');
+  }
+  return (
+    <a href="#" onClick={handleClick}>
+      Click me
+    </a>
+  )
+}
+
 ReactDOM.render(
   // 1. Clock이 ReactDOM.render()로 전달된다
-  <Clock />,
+  <ActionLink />,
   document.getElementById('root')
 );
 
