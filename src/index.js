@@ -6,38 +6,40 @@ import reportWebVitals from './reportWebVitals';
 import { render } from '@testing-library/react';
 
 
-function Blog(props) {
-  const sidebar = (
-    <ul>
-      {props.posts.map((post) =>
-        <li key={post.id}>
-          {post.title}
-        </li>
-      )}
-    </ul>
-  );
-  const content = props.posts.map((post) =>
-    <div key={post.id}>
-      <h3>{post.title}</h3>
-      <p>{post.content}</p>
-    </div>
-  );
-  return (
-    <div>
-      {sidebar}
-      <hr/>
-      {content}
-    </div>
-  )
+class EssayForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+      value: 'Please write an essay about your favorite DOM element'
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('An essay was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Essay:
+          <textarea value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    )
+  }
 }
 
-const posts = [
-  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
-]
-
 ReactDOM.render(
-  <Blog posts={posts}/>,
+  <EssayForm />,
   document.getElementById('root')
 );
 
