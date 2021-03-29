@@ -6,45 +6,40 @@ import reportWebVitals from './reportWebVitals';
 import { render } from '@testing-library/react';
 
 
-class EssayForm extends React.Component {
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>The water would boil</p>
+  }
+  return <p>The water would not boil</p>
+}
+
+class Calculator extends React.Component {
   constructor(props) {
-    super(props);
-    this.state= {
-      value: 'Please write an essay about your favorite DOM element'
-    };
+    super(props)
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {temperature: ''};
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
-    event.preventDefault();
+  handleChange(e) {
+    this.setState({temperature: e.target.value});
   }
 
   render() {
+    const temperature = this.state.temperature;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Essay:
-          <textarea value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    )
+      <fieldset>
+        <legend>Enter temperature in Celsius</legend>
+        <input 
+          value={temperature}
+          onChange={this.handleChange}
+        />
+        <BoilingVerdict celsius={parseFloat(temperature)}/>
+      </fieldset>
+    );
   }
 }
 
 ReactDOM.render(
-  <EssayForm />,
+  <Calculator  />,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
-// reportWebVitals();
